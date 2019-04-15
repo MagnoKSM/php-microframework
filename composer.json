@@ -1,0 +1,16 @@
+{
+    "name": "magnoksm/mfw",
+    "description": "A microframework using php to manager websites and systems.",
+    "authors": [
+        {
+            "name": "Magno Sousa",
+            "email": "magno.bds@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MagnoKsm\\": "src"
+        }
+    }
+}
