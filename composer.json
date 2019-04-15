@@ -7,10 +7,15 @@
             "email": "magno.bds@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "illuminate/support": "^5.8"
+    },
     "autoload": {
         "psr-4": {
             "MagnoKsm\\": "src"
         }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.4"
     }
 }
