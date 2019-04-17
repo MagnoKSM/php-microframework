@@ -1,6 +1,7 @@
 <?php
 
 use MagnoKsm\Router\Router;
+use MagnoKsm\DI\Resolver;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -14,4 +15,7 @@ $router->get('/hello', function() {
 });
 
 $result = $router->run();
-var_dump($result['callback']());
+
+$data = (new Resolver())->method($result['callback'], [
+    'params' => $result['params']
+]);
