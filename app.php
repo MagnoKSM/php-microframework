@@ -2,6 +2,7 @@
 
 use MagnoKsm\Router\Router;
 use MagnoKsm\DI\Resolver;
+use MagnoKsm\Render\PHPRender;
 
 require __DIR__ . '/vendor/autoload.php';
 

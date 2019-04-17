@@ -1,15 +1,30 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: MagnoKSM
- * Date: 16/04/2019
- * Time: 22:14
- */
 
 namespace MagnoKsm\Render;
 
-
-interface PHPRender
+class PHPRender implements PHPRenderInterface
 {
+    private $data;
 
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
+
+    public function run()
+    {
+        if (is_string($this->data)) {
+            header('Content-type:text/html; charset=UTF-8');
+            echo $this->data;
+            exit;
+        }
+
+        if (is_array($this->data)) {
+            header('Content-type: application/json');
+            echo json_encode($this->data);
+            exit;
+        }
+
+        throw new \Exception("Route return is invalid!!!");
+    }
 }

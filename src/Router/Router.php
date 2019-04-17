@@ -33,7 +33,7 @@ class Router
     public function run()
     {
         $data = $this->collection->filter($this->method);
-var_dump($data);
+
         foreach ($data as $key => $value) {
             $result = $this->checkUrl($key, $this->path);
             $callback = $value;
