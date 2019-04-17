@@ -16,7 +16,7 @@ class App
         $path = $_SERVER['PATH_INFO'] ?? '/';
         $request_method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 
-        $this->router = new Router($path, $request_method);
+        $this->router = new Router($request_method, $path);
     }
 
     public function setRenderer(PHPRenderInterface $render)
@@ -42,7 +42,7 @@ class App
         if (is_string($route['callback'])) {
             $data = $this->resolveController($route);
         } else {
-            $data = $resolver->method($route['callback'], ['params'=>$route['params']]);
+            $data = $resolver->method($route['callback'], ['params' => $route['params']]);
         }
 
         $this->renderer->setData($data);

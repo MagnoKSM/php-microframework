@@ -4,9 +4,9 @@ namespace MagnoKsm\Router;
 
 class Router
 {
-    private $collection;
-    private $method;
-    private $path;
+    protected $collection;
+    protected $method;
+    protected $path;
 
     public function __construct(string $method, string $path)
     {
@@ -36,7 +36,8 @@ class Router
         $result = [];
         $callback = null;
 
-        foreach ($data as $key => $value) {
+        foreach($data as $key => $value) {
+
             $result = $this->checkUrl($key, $this->path);
             $callback = $value;
             if ($result['result']) {
@@ -57,12 +58,10 @@ class Router
     public function checkUrl(string $toFind, $subject)
     {
         preg_match_all('/\{([^\}]*)\}/', $toFind, $variables);
-
         $regex = str_replace('/', '\/', $toFind);
 
         foreach ($variables[1] as $key => $variable) {
             $as = explode(':', $variable);
-
             $replacement = $as[1] ?? '([a-zA-Z0-9\-\_\ ]+)';
             $regex = str_replace($variables[$key], $replacement, $regex);
         }
@@ -70,6 +69,6 @@ class Router
         $regex = preg_replace('/{([a-zA-Z]+)}/', '([a-zA-Z0-9+])', $regex);
         $result = preg_match('/^' . $regex . '$/', $subject, $params);
 
-        return [$result, $params];
+        return compact('result', 'params');
     }
 }

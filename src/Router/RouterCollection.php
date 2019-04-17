@@ -22,6 +22,7 @@ class RouterCollection
         if (!isset($this->collection[$method])) {
             $this->collection[$method] = new Collection();
         }
+
         return $this->collection[$method];
     }
 
