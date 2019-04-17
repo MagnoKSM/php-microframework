@@ -1,22 +1,12 @@
 <?php
 
-use MagnoKsm\Router\Router;
-use MagnoKsm\DI\Resolver;
-use MagnoKsm\Render\PHPRender;
-
 require __DIR__ . '/vendor/autoload.php';
 
-$path = $_SERVER['PATH_INFO'] ?? '/';
-$request_method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+$app = new \MagnoKsm\App;
+$app->setRenderer(new \MagnoKsm\Render\PHPRender());
 
-$router = new Router($path, $request_method);
-
-$router->get('/hello', function() {
-    return 'Magno';
+$app->get('/hello/{name}', function ($params) {
+    return "<h1>{$params[1]}</h1>";
 });
-
-$result = $router->run();
-
-$data = (new Resolver())->method($result['callback'], [
-    'params' => $result['params']
-]);
+$app->get('/home/{name}', 'MagnoKsm\Controllers\HomeController@index');
+$app->run();

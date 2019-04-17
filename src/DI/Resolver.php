@@ -18,7 +18,7 @@ class Resolver
     {
         $this->dependencies = $dependencies;
 
-        $info = new \ReflectionFunction($method);
+        $info = new \ReflectionMethod($method);
 
         $parameters = $info->getParameters();
         $parameters = $this->resolveParameters($parameters);
